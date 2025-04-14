@@ -24,6 +24,33 @@ const products = [
   { name: "Keyboard", price: 100, inStock: false },
 ];
 
+const inStockNames = products
+  .filter(product => product.inStock)
+  .map(product => product.name);
+
+const upperNames = products.map(product => product.name.toUpperCase());
+
+function applyDiscount(discountPercent) {
+  return function(product) {
+    return {
+      ...product,
+      discountedPrice: product.price * (1 - discountPercent),
+    };
+  };
+}
+
+const discountedProducts = products.map(applyDiscount(0.25));
+
+const totalInStockValue = products
+  .filter(product => product.inStock)
+  .reduce((sum, product) => sum + product.price, 0);
+
+
+
+console.log(inStockNames);
+console.log(upperNames);
+console.log(discountedProducts);
+console.log(totalInStockValue);
 // ============================================
 // 🔧 Tasks
 // ============================================
